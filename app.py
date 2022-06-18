@@ -363,7 +363,10 @@ class DocScanner(object):
         return (OUTPUT_DIR + '/' + basename)
         # print("Proccessed " + basename)
 
-
+@app.route('/display/<filename>')
+def display_image(filename):
+	#print('display_image filename: ' + filename)
+	return redirect(url_for('static', filename='output/' + filename), code=301)
 
 # if __name__ == "__main__":
 #     app.run(host='0.0.0.0')
