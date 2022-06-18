@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+
+"""
 from pyimagesearch import transform
 from pyimagesearch import imutils
 from scipy.spatial import distance as dist
@@ -367,6 +372,3 @@ class DocScanner(object):
 
 # if __name__ == "__main__":
 #     app.run(host='0.0.0.0')
-
-if __name__ == '__main__':
-    app.run()
