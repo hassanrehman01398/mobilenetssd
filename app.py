@@ -360,15 +360,15 @@ class DocScanner(object):
         # print("Current timestamp:", ts)
         basename = os.path.basename((str)(ts)+".jpg")
         cv2.imwrite(OUTPUT_DIR + '/' + basename, thresh)
-        return send_file("https://flaskscamscanner.herokuapp.com/"+OUTPUT_DIR + '/' + basename)
+        # return send_file("https://flaskscamscanner.herokuapp.com/"+OUTPUT_DIR + '/' + basename)
     
-        #  return ()
+          return (OUTPUT_DIR + '/' + basename)
         # print("Proccessed " + basename)
 
 @app.route('/display/<filename>')
 def display_image(filename):
 	#print('display_image filename: ' + filename)
-	return redirect(url_for('static', filename='output/' + filename), code=301)
+	return redirect(url_for('output', filename= filename), code=301)
 
 # if __name__ == "__main__":
 #     app.run(host='0.0.0.0')
