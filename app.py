@@ -362,7 +362,7 @@ class DocScanner(object):
         cv2.imwrite(OUTPUT_DIR + '/' + basename, thresh)
         # return send_file("https://flaskscamscanner.herokuapp.com/"+OUTPUT_DIR + '/' + basename)
     
-          return (OUTPUT_DIR + '/' + basename)
+        return (OUTPUT_DIR + '/' + basename)
         # print("Proccessed " + basename)
 
 @app.route('/display/<filename>')
