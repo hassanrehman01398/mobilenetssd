@@ -360,7 +360,9 @@ class DocScanner(object):
         # print("Current timestamp:", ts)
         basename = os.path.basename((str)(ts)+".jpg")
         cv2.imwrite(OUTPUT_DIR + '/' + basename, thresh)
-        return (OUTPUT_DIR + '/' + basename)
+        return send_file("https://flaskscamscanner.herokuapp.com/"+OUTPUT_DIR + '/' + basename)
+    
+        #  return ()
         # print("Proccessed " + basename)
 
 @app.route('/display/<filename>')
