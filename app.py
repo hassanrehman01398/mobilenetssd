@@ -14,9 +14,9 @@ import time
 import argparse
 import os
 from flask import send_from_directory,send_file
-
+import io
 from flask import Flask, render_template, request, redirect, url_for
-
+from PIL import Image
 app = Flask(__name__)
 
 # read image from user
@@ -318,7 +318,7 @@ class DocScanner(object):
     def scan(self, document):
 
         RESCALED_HEIGHT = 500.0
-        OUTPUT_DIR = 'output'
+        OUTPUT_DIR = 'static/images'
 
         # load the image and compute the ratio of the old height
         # to the new height, clone it, and resize it
@@ -362,13 +362,29 @@ class DocScanner(object):
         cv2.imwrite(OUTPUT_DIR + '/' + basename, thresh)
         # return send_file("https://flaskscamscanner.herokuapp.com/"+OUTPUT_DIR + '/' + basename)
     
+        #my_image = Image.open(image_file)
+        #img_tag=serve_pil_image(my_image)
+        #image = [i for i in os.listdir('static/images') if i.endswith('.jpg')][0]
+        # return render_template('index.html', user_image = basename)
+        # return render_template('index.html', image=img_tag)
         return (OUTPUT_DIR + '/' + basename)
         # print("Proccessed " + basename)
 
+
+def serve_pil_image(pil_img):
+
+    img_io = io.BytesIO()
+    pil_img.save(img_io, 'jpeg', quality=100)
+    img_io.seek(0)
+    img = base64.b64encode(img_io.getvalue()).decode('ascii')
+    img_tag = f'<img src="data:image/jpg;base64,{img}" class="img-fluid"/>'
+    return img_tag
+
+    
 @app.route('/display/<filename>')
 def display_image(filename):
 	#print('display_image filename: ' + filename)
-	return redirect(url_for('output', filename= filename), code=301)
+	return redirect(url_for('static', filename='images/' + filename), code=301)
 
 # if __name__ == "__main__":
 #     app.run(host='0.0.0.0')
