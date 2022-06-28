@@ -11,4 +11,3 @@ ocrd-fork-pylsd==0.0.3
 scipy
 matplotlib
 pandas
-PIL
