@@ -366,7 +366,7 @@ class DocScanner(object):
         #image = [i for i in os.listdir('static/images') if i.endswith('.jpg')][0]
         # return render_template('index.html', user_image = basename)
         # return render_template('index.html', image=img_tag)
-        return (OUTPUT_DIR + '/' + basename)
+        return (basename)
         # print("Proccessed " + basename)
 
 
