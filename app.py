@@ -343,7 +343,7 @@ class DocScanner(object):
 
         # sharpen image
         sharpen = cv2.GaussianBlur(warped, (0,0), 3)
-        sharpen = cv2.addWeighted(gray, 1.5, sharpen, -0.5, 0)
+        sharpen = cv2.addWeighted(warped, 1.5, sharpen, -0.5, 0)
 
         # apply adaptive threshold to get black and white effect
         thresh = cv2.adaptiveThreshold(sharpen, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 15)
