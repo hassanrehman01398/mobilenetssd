@@ -339,14 +339,14 @@ class DocScanner(object):
         warped = transform.four_point_transform(orig, screenCnt * ratio)
 
         # convert the warped image to grayscale
-        gray = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
+        # gray = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
 
         # sharpen image
-        sharpen = cv2.GaussianBlur(gray, (0,0), 3)
-        sharpen = cv2.addWeighted(gray, 1.5, sharpen, -0.5, 0)
+        # sharpen = cv2.GaussianBlur(gray, (0,0), 3)
+        # sharpen = cv2.addWeighted(gray, 1.5, sharpen, -0.5, 0)
 
         # apply adaptive threshold to get black and white effect
-        thresh = cv2.adaptiveThreshold(sharpen, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 15)
+        # thresh = cv2.adaptiveThreshold(sharpen, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 15)
 
         # save the transformed image
 
@@ -358,7 +358,7 @@ class DocScanner(object):
         ts = calendar.timegm(current_GMT)
         # print("Current timestamp:", ts)
         basename = os.path.basename((str)(ts)+".jpg")
-        cv2.imwrite(OUTPUT_DIR + '/' + basename, thresh)
+        cv2.imwrite(OUTPUT_DIR + '/' + basename, warped)
         # return send_file("https://flaskscamscanner.herokuapp.com/"+OUTPUT_DIR + '/' + basename)
     
         #my_image = Image.open(image_file)
